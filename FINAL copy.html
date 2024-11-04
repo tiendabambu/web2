@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Venta - Tienda de Bambú</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(fondo.jpg);
+            color: #333;
+        }
+        .banner {
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #4CAF50;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-bottom: 2px solid #4CAF50;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .total-box {
+            background-color: #e8f5e9;
+            font-weight: bold;
+            padding: 10px;
+            text-align: right;
+            color: #333;
+            margin-left: 20px; 
+    padding: 10px;
+    background-color: #e8f5e9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+        .product-image {
+            width: 100px;
+            height: auto;
+            display: none; 
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div class="banner">Formulario de Venta - Tienda de Bambú</div>
+
+<div class="container">
+    <h2>Detalles de la Venta</h2>
+    <form id="ventaForm">
+        <label>Nro. de Venta:</label>
+        <input type="text" class="form-control" id="ventaNumero">
+
+        <label>Fecha:</label>
+        <input type="date" class="form-control" id="fecha">
+
+        <label>Cliente:</label>
+        <input type="text" class="form-control" id="cliente">
+
+        <label>Teléfono:</label>
+        <input type="text" class="form-control" id="telefono" placeholder="+591 78956535" pattern="^\+591 \d{8}$" required>
+
+        <label>Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="ejemplo@correo.com" required>
+
+        
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Producto</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="productos">
+               
+                <tr>
+                    <td><input type="number" class="form-control" min="0" value="0" onchange="calcularSubtotal(this)"></td>
+                    <td>
+                        <select class="form-control" onchange="seleccionarProducto(this)">
+                            <option value="" data-precio="0" data-imagen="">Seleccione un producto</option>
+                            <option value="bambu1" data-precio="15" data-imagen="taza.jpg">Taza de Bambú</option>
+                            <option value="bambu2" data-precio="20" data-imagen="plato.jpg">Plato de Bambú</option>
+                            <option value="bambu3" data-precio="30" data-imagen="cuenco.jpg">Cuenco de Bambú</option>
+                            <option value="bambu4" data-precio="50" data-imagen="bambusilla.jpg">Bambú Silla</option>
+                            <option value="bambu5" data-precio="60" data-imagen="bambuMesa.jpg">Mesa de Bambú</option>
+                        </select>
+                        <img src="" class="product-image" alt="Imagen del Producto">
+                    </td>
+                    <td class="precio-unitario">-</td>
+                    <td class="subtotal">-</td>
+                </tr>
+                <tr>
+                    <td><input type="number" class="form-control" min="0" value="0" onchange="calcularSubtotal(this)"></td>
+                    <td>
+                        <select class="form-control" onchange="seleccionarProducto(this)">
+                            <option value="" data-precio="0" data-imagen="">Seleccione un producto</option>
+                            <option value="bambu1" data-precio="15" data-imagen="taza.jpg">Taza de Bambú</option>
+                            <option value="bambu2" data-precio="20" data-imagen="plato.jpg">Plato de Bambú</option>
+                            <option value="bambu3" data-precio="30" data-imagen="cuenco.jpg">Cuenco de Bambú</option>
+                            <option value="bambu4" data-precio="50" data-imagen="bambusilla.jpg">Bambú Silla</option>
+                            <option value="bambu5" data-precio="60" data-imagen="bambuMesa.jpg">Mesa de Bambú</option>
+                        </select>
+                        <img src="" class="product-image" alt="Imagen del Producto">
+                    </td>
+                    <td class="precio-unitario">-</td>
+                    <td class="subtotal">-</td>
+                </tr>
+                <tr>
+                    <td><input type="number" class="form-control" min="0" value="0" onchange="calcularSubtotal(this)"></td>
+                    <td>
+                        <select class="form-control" onchange="seleccionarProducto(this)">
+                            <option value="" data-precio="0" data-imagen="">Seleccione un producto</option>
+                            <option value="bambu1" data-precio="15" data-imagen="taza.jpg">Taza de Bambú</option>
+                            <option value="bambu2" data-precio="20" data-imagen="plato.jpg">Plato de Bambú</option>
+                            <option value="bambu3" data-precio="30" data-imagen="cuenco.jpg">Cuenco de Bambú</option>
+                            <option value="bambu4" data-precio="50" data-imagen="bambusilla.jpg">Bambú Silla</option>
+                            <option value="bambu5" data-precio="60" data-imagen="bambuMesa.jpg">Mesa de Bambú</option>
+                        </select>
+                        <img src="" class="product-image" alt="Imagen del Producto">
+                    </td>
+                    <td class="precio-unitario">-</td>
+                    <td class="subtotal">-</td>
+                </tr>
+                <tr>
+                    <td><input type="number" class="form-control" min="0" value="0" onchange="calcularSubtotal(this)"></td>
+                    <td>
+                        <select class="form-control" onchange="seleccionarProducto(this)">
+                            <option value="" data-precio="0" data-imagen="">Seleccione un producto</option>
+                            <option value="bambu1" data-precio="15" data-imagen="taza.jpg">Taza de Bambú</option>
+                            <option value="bambu2" data-precio="20" data-imagen="plato.jpg">Plato de Bambú</option>
+                            <option value="bambu3" data-precio="30" data-imagen="cuenco.jpg">Cuenco de Bambú</option>
+                            <option value="bambu4" data-precio="50" data-imagen="bambusilla.jpg">Bambú Silla</option>
+                            <option value="bambu5" data-precio="60" data-imagen="bambuMesa.jpg">Mesa de Bambú</option>
+                        </select>
+                        <img src="" class="product-image" alt="Imagen del Producto">
+                    </td>
+                    <td class="precio-unitario">-</td>
+                    <td class="subtotal">-</td>
+                </tr>
+                <tr>
+                    <td><input type="number" class="form-control" min="0" value="0" onchange="calcularSubtotal(this)"></td>
+                    <td>
+                        <select class="form-control" onchange="seleccionarProducto(this)">
+                            <option value="" data-precio="0" data-imagen="">Seleccione un producto</option>
+                            <option value="bambu1" data-precio="15" data-imagen="taza.jpg">Taza de Bambú</option>
+                            <option value="bambu2" data-precio="20" data-imagen="plato.jpg">Plato de Bambú</option>
+                            <option value="bambu3" data-precio="30" data-imagen="cuenco.jpg">Cuenco de Bambú</option>
+                            <option value="bambu4" data-precio="50" data-imagen="bambusilla.jpg">Bambú Silla</option>
+                            <option value="bambu5" data-precio="60" data-imagen="bambuMesa.jpg">Mesa de Bambú</option>
+                        </select>
+                        <img src="" class="product-image" alt="Imagen del Producto">
+                    </td>
+                    <td class="precio-unitario">-</td>
+                    <td class="subtotal">-</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<div class="total-box">
+    Subtotal: <span id="subtotal">0.00</span> Bs
+    <br>
+    IVA (13%): <span id="iva">0.00</span> Bs
+    <br>
+    Total: <span id="total">0.00</span> Bs
+</div>
+<script>
+    function seleccionarProducto(select) {
+        const precio = select.options[select.selectedIndex].dataset.precio;
+        const imgSrc = select.options[select.selectedIndex].dataset.imagen;
+        const row = select.parentElement.parentElement;
+
+        row.querySelector('.precio-unitario').innerText = precio ? `${precio} Bs` : '-';
+        row.querySelector('.product-image').src = imgSrc;
+        row.querySelector('.product-image').style.display = imgSrc ? 'inline' : 'none';
+        
+        calcularSubtotal(row.querySelector('input[type="number"]'));
+    }
+
+    function calcularSubtotal(input) {
+        const row = input.parentElement.parentElement;
+        const cantidad = parseInt(input.value) || 0;
+        const precioUnitario = parseFloat(row.querySelector('.precio-unitario').innerText.replace(' Bs', '')) || 0;
+        const subtotal = cantidad * precioUnitario;
+
+        row.querySelector('.subtotal').innerText = `${subtotal.toFixed(2)} Bs`;
+        actualizarTotales();
+    }
+
+    function actualizarTotales() {
+        let subtotalTotal = 0;
+
+        const subtotales = document.querySelectorAll('.subtotal');
+        subtotales.forEach(subtotal => {
+            subtotalTotal += parseFloat(subtotal.innerText.replace(' Bs', '')) || 0;
+        });
+
+        const iva = subtotalTotal * 0.13;
+        const total = subtotalTotal + iva;
+
+        document.getElementById('subtotal').innerText = subtotalTotal.toFixed(2);
+        document.getElementById('iva').innerText = iva.toFixed(2);
+        document.getElementById('total').innerText = total.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
